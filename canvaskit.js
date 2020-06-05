@@ -32,8 +32,6 @@ let mouseState = {
     left:false,
     middle:false,
     right:false,
-    touchx:[],
-    touchy:[]
 }, keydown = {};
 
 const canvas = document.getElementById("disp");

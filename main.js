@@ -426,7 +426,7 @@ let judgeNotes =()=> {
         
         switch (x.type) {
             case "1": {
-                if (!x.effected && nearestTapnote[laneStates[x.lane].keyNum].endTime - nowTime > x.endTime - nowTime) nearestTapnote[laneStates[x.lane].keyNum] = x;
+                if (!x.effected && Math.abs(nearestTapnote[laneStates[x.lane].keyNum].endTime - nowTime) > Math.abs(x.endTime - nowTime)) nearestTapnote[laneStates[x.lane].keyNum] = x;
             } break;
             case "2": {
                 if (!x.effected && pressed[laneStates[x.lane].keyNum]) {
