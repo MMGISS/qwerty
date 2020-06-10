@@ -653,11 +653,12 @@ let generateScore =(scoreName)=> {
     let notesTime = [];
     fullComboAmount = 0;
     score[scoreName].match(/score:((.|\n)*)/)[1].split("\n").filter(x=>x).forEach(x=>{
-        let arr = x.split(/ +/);
-        let reversed = arr[2].charAt(0) == "-";
-        let isMultiNote = arr[0] <= 2 && arr[1].length != 1;
+
+        let arr = x.split(/ +/), reversed, isMultiNote;
 
         if (["1", "2", "3", "4", "a", "d", "x", "y"].indexOf(arr[0]) > -1) {
+            reversed = arr[2].charAt(0) == "-";
+
             arr[2] = reversed ? pathes[arr[2].substr(1)].map(x=>x.map(x => x.map((x, y) => y >= 1 ? x * -1 + 200 : x))) : pathes[arr[2]];
             arr[3] *= 60 / bpm * 1000;
             arr[4] *= 60 / bpm * 1000;
@@ -665,14 +666,16 @@ let generateScore =(scoreName)=> {
             arr[2] *= 60 / bpm * 1000;
         }
 
-        if (arr[0] <= 2) {
+        if (arr[0] == "1" || arr[0] == "2") {
+            isMultiNote = arr[1].length != 1;
+
             fullComboAmount += arr[1].length;
             let index = notesTime.findIndex(x => x[0] <= arr[3]);
+
             if ((notesTime[index] || [])[0] == arr[3]) {
                 isMultiNote = true;
                 notes[notesTime[index][1]].isMultiNote = true;
-            }
-            else notesTime.splice(index, 0, [arr[3], notes.length]);
+            } else notesTime.splice(index, 0, [arr[3], notes.length]);
         }
 
         switch (arr[0]) {
