@@ -47,6 +47,7 @@ let score = {},
     newPressed = new Array(10).fill(false),
     fullComboAmount = 0,
     laneKeys = (localStorage.getItem("lanekey") || "qwertyuiop").split(""),
+    noteSlot = 0;
     infoStyle = {
         ypos: 0, 
         alpha: 0
@@ -69,7 +70,7 @@ const judgeRate = {
     longNoteTerm:300
     },
     // colorList = {
-    //     backGround: "#101020",
+    //     backGround: "#101010",
     //     white: "#d0d0ff",
     //     tapNote: "#88ffff",
     //     tapNoteFill: "#88ffff44",
@@ -138,12 +139,12 @@ let defineLane = class {
         this.xpos = xpos * 1;
         this.ypos = ypos * 1;
         this.alpha = alpha * 1;
-        this.direction = direction * 1;
+        this.direction = direction * Math.PI * 2;
         this.keyNum = keyNum * 1;
     }
 
     isExpired(time) {
-        return time <= this.time;
+        return time >= this.time;
     }
 }
 
@@ -154,7 +155,7 @@ let deleteLane = class {
     }
     
     isExpired(time) {
-        return time <= this.time;
+        return time >= this.time;
     }
 }
 
@@ -284,7 +285,7 @@ let moveLanes =()=> {
         else time = (x.endTime - nowTime) / x.speed;
 
         switch (x.type) {
-            case "a": laneStates[x.lane].alpha = Math.max(0, Math.min(1, getPathFromX(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min)); break;
+            case "a": laneStates[x.lane].alpha = Math.max(0, getPathFromX(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min); break;
             case "d": laneStates[x.lane].direction = (getPathFromX(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min) * Math.PI * 2; break;
             case "x": laneStates[x.lane].xpos = getPathFromX(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min; break;
             case "y": laneStates[x.lane].ypos = getPathFromX(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min; break;
@@ -413,7 +414,8 @@ let judgeNotes =()=> {
 
     notes.some(x => {
 
-        if (x.endTime - x.speed > nowTime) return true;
+        if (x.endTime - judgeRate.lost > nowTime) return true;
+        if (!laneStates[x.lane]) return false;
         
         if ((x.type == "1" || x.type == "2") && !x.judge && x.endTime - nowTime < -judgeRate.far) {
             x.judge = "lost";
@@ -421,8 +423,6 @@ let judgeNotes =()=> {
             x.effected = true;
             return false;
         }
-
-        if (!laneStates[x.lane]) return false;
         
         switch (x.type) {
             case "1": {
@@ -556,8 +556,9 @@ let drawEffects =()=> {
         })
 
         if (x.sound) {
-            snd["se/note.ogg"].currentTime = 0.025;
-            snd["se/note.ogg"].play();
+            noteSlot = ++noteSlot % 16;
+            snd[`note_slot${noteSlot}`].currentTime = 0.025;
+            snd[`note_slot${noteSlot}`].play();
             x.sound = false;
         }
     });
@@ -618,7 +619,7 @@ let drawInfos =()=> {
 
 let deleteNotes =()=> {
     laneMoves = laneMoves.filter(x => x.endTime - nowTime > 0);
-    notes = notes.filter(x => !(x.effected && x.judge != "lost") && x.endTime - nowTime > -1000 || drewId[x.id]);
+    notes = notes.filter(x => (!(x.effected && x.judge != "lost") && x.endTime - nowTime > (x.id ? 0 : -1000)) || drewId[x.id]);
     metaData = metaData.filter(x => !x.isExpired(nowTime));
 }
 
