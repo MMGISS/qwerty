@@ -7,6 +7,8 @@ bgm/dead_soul_by_sound_souler.ogg
 bgm/Destr0yer-feat-Nikki-Simmons.ogg
 bgm/cut173_edition_brain_power.ogg
 bgm/BPM_RT.ogg
+bgm/3rd-Avenue.ogg
+
 se/note.ogg note_slot0
 se/note.ogg note_slot1
 se/note.ogg note_slot2
