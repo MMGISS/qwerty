@@ -29,7 +29,7 @@ let score = {},
     title,
     author,
     bgm, 
-    bgmvol, 
+    bgmvol,
     bpm, 
     offset, 
     pathes = {}, 
@@ -53,7 +53,7 @@ let score = {},
         alpha: 0
     },
     judgeStatus = {
-        score:0,
+        score: 0,
         maxCombo: 0,
         combo: 0,
         perfect: 0,
@@ -91,17 +91,6 @@ const judgeRate = {
         good: "#b0b0cc",
         far: "#666666"
     };
-    // colorList = {
-    //     backGround: "#101020",
-    //     white: "#f0b0ff",
-    //     tapNote: "#f090ffff",
-    //     tapNoteFill: "#f07dff66",
-    //     slideNote: "#f0d0ff",
-    //     slideNoteFill:"#f0d0ff88",
-    //     perfect: "#f07dff",
-    //     good: "#c0b0cc",
-    //     far: "#666666"
-    // };
 
 const diagLeng = (3200 ** 2 + 1800 ** 2) ** 0.5;
 
@@ -227,12 +216,19 @@ let getPosByPath =(pathStr)=> {
     return pos;
 }
 
-let getPathFromX =(pos, px)=> {
+let getYposFromPath =(pos, px)=> {
     px = Math.max(0, Math.min(px, 100));
     let i = 0;
     for (i = 0; i < pos.length - 1; i++) if (pos[i + 1][0][0] > px) break;
     if (pos[i].length == 4) return getBezierYfromX(pos[i][0][0], pos[i][0][1], pos[i][1][0], pos[i][1][1], pos[i][2][0], pos[i][2][1], pos[i][3][0], pos[i][3][1], px);
     else return pos[i][0][1] + (pos[i][0][0] - px) / (pos[i][1][0] - pos[i][0][0]) * (pos[i][0][1] - pos[i][1][1]);
+}
+
+let getYposFromPathArr =(pathArr, px)=> {
+    let lastYpos = px;
+    pathArr.reverse().forEach(x => lastYpos = getYposFromPath(pathes[x], lastYpos));
+    pathArr.reverse();
+    return lastYpos;
 }
 
 let drawqwerty =()=> {
@@ -285,10 +281,10 @@ let moveLanes =()=> {
         else time = (x.endTime - nowTime) / x.speed;
 
         switch (x.type) {
-            case "a": laneStates[x.lane].alpha = Math.max(0, getPathFromX(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min); break;
-            case "d": laneStates[x.lane].direction = (getPathFromX(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min) * Math.PI * 2; break;
-            case "x": laneStates[x.lane].xpos = getPathFromX(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min; break;
-            case "y": laneStates[x.lane].ypos = getPathFromX(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min; break;
+            case "a": laneStates[x.lane].alpha = Math.max(0, getYposFromPathArr(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min); break;
+            case "d": laneStates[x.lane].direction = (getYposFromPathArr(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min) * Math.PI * 2; break;
+            case "x": laneStates[x.lane].xpos = getYposFromPathArr(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min; break;
+            case "y": laneStates[x.lane].ypos = getYposFromPathArr(x.path, (1 - time) * 100) / 100 * (x.max - x.min) + x.min; break;
         }
     });
 }
@@ -306,7 +302,7 @@ let drawNotes =()=> {
 
         let time = (x.endTime - nowTime) / x.speed;
     
-        let ypos = time > 0 ? -1600 + getPathFromX(x.path, (1 - time) * 100) * 16 : (x.id ? 0 : (nowTime - x.endTime) / 1000 * 200 * x.reversed);
+        let ypos = time > 0 ? (x.reversed == -1 ? 1600 + getYposFromPathArr(x.path, (1 - time) * 100) * -16 : -1600 + getYposFromPathArr(x.path, (1 - time) * 100) * 16) : (x.id ? 0 : (nowTime - x.endTime) / 1000 * 200 * x.reversed);
 
         ctx.save();
         ctx.lineWidth = 3;
@@ -654,12 +650,16 @@ let generateScore =(scoreName)=> {
     fullComboAmount = 0;
     score[scoreName].match(/score:((.|\n)*)/)[1].split("\n").filter(x=>x).forEach(x=>{
 
-        let arr = x.split(/ +/), reversed, isMultiNote;
+        let arr = x.split(/ +/), reversed = 0, isMultiNote;
 
         if (["1", "2", "3", "4", "a", "d", "x", "y"].indexOf(arr[0]) > -1) {
-            reversed = arr[2].charAt(0) == "-";
+            arr[2] = arr[2].split(",");
+            
+            if (arr[2][0].charAt(0) == "-") {
+                reversed = true;
+                arr[2][0] = arr[2][0].substr(1);
+            }
 
-            arr[2] = reversed ? pathes[arr[2].substr(1)].map(x=>x.map(x => x.map((x, y) => y >= 1 ? x * -1 + 200 : x))) : pathes[arr[2]];
             arr[3] *= 60 / bpm * 1000;
             arr[4] *= 60 / bpm * 1000;
         } else {
