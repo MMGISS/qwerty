@@ -24,6 +24,17 @@ k: M -50,-50 -30,-50 -50,50 M 50,-50 -10,0 30,50 50,50
 l: M -50,-50 -30,-50 -50,50 50,50 30,50 35,25
 ;: M -35,-25 -30,-50 -50,-50 50,-50 30,50 50,50 -50,50 -45,25
 
+z: M 50,50 H 30 M -50,-50 h 20 M 35,25 30,50 H -50 L 50,-50 h -80 l -5,25
+x: M -10,0 H 10 M 50,-50 10,0 30,50 H 50 M -50,-50 h 20 l 20,50 -40,50
+c: M 30,50 35,25 M -30,-50 -50,50 H 30 50 M -50,-50 H 50 l -5,25
+v: M 50,50 H -10 M -50,-50 h 20 V 50 L 50,-50
+b: M -50,-50 H 50 L 42.5,-12.5 0,0 37.5,12.5 30,50 m -80,0 20,-100 M -50,50 H 50
+n: M 30,50 50,-50 M -50,50 v 0 l 20,-100 m -20,0 h 20 L 30,50 h 20
+m: m -50,50 v 0 l 20,-100 m -20,0 h 20 L 0,0 50,-50 30,50 h 20
+,: M -50,-50 H 5 L 0,-25 M -30,-50 -50,50 h 35 l 5,-25 M 50,50 H -5 L 15,-50 H 50 L 30,50
+.: M -30,-50 -50,50 M 50,50 H -5 L 5,0 H 40 M 30,50 50,-50 m -100,0 H 5 L -5,0 h -35
+/: M 30,50 35,25 M 50,50 H -5 L 15,-50 m -45,0 -10,50 h 35 l -10,50 h -35 l 5,-25 m -5,-75 H 5 l -5,25
+
 `.split("\n").filter(x=>x).forEach(x => pathPreset[x.substring(0, x.indexOf(" ") - 1)] = new Path2D(x.substring(x.indexOf(" "))));
 let score = {},
     title,
@@ -63,34 +74,40 @@ let score = {},
     };
 
 const judgeRate = {
-    far:250, 
+    far:350, 
     good:150, 
     perfect:50,
     perfect_supereme: 30,
     longNoteTerm:300
+};
+const themes = {
+    theme_default: {
+        backGround: "#101020",
+        white: "#d0d0ff",
+        tapNote: "#88eeff",
+        tapNoteFill: "#88eeff66",
+        slideNote: "#ffff88",
+        slideNoteFill:"#ffff8866",
+        perfect: "#ffff88",
+        good: "#88eeff",
+        far: "#ff8888"
     },
-    // colorList = {
-    //     backGround: "#101010",
-    //     white: "#d0d0ff",
-    //     tapNote: "#88ffff",
-    //     tapNoteFill: "#88ffff44",
-    //     slideNote: "#ffff88",
-    //     slideNoteFill:"#ffff8844",
-    //     perfect: "#ffff88",
-    //     good: "#88ffff",
-    //     far: "#ff8888"
-    // };
-    colorList = {
+    theme_purple: {
         backGround: "#101020",
         white: "#b0b0ff",
-        tapNote: "#9090ffff",
-        tapNoteFill: "#7d7dff66",
+        tapNote: "#b0b0ffff",
+        tapNoteFill: "#7d7dff77",
         slideNote: "#d0d0ff",
         slideNoteFill:"#d0d0ff88",
-        perfect: "#7d7dff",
-        good: "#b0b0cc",
-        far: "#666666"
-    };
+        perfect: "#7070ff",
+        good: "#8080a0",
+        far: "#ff8888"
+    }
+}
+
+const colorList = themes.theme_default;
+
+document.body.style.backgroundColor = colorList.backGround;
 
 const diagLeng = (3200 ** 2 + 1800 ** 2) ** 0.5;
 
@@ -155,16 +172,22 @@ let lane = class {
         this.direction = direction;
         this.alpha = alpha;
         this.keyNum = keyNum;
+
+        this.latestDispatchedNoteJudge;
+        this.latestDispatchedNoteTime = -Infinity;
     }
 }
 
 let effect = class {
-    constructor(lane, state, sound = false){
+    constructor(lane, judge, sound = false){
         this.lane = lane;
-        this.state = state;
+        this.judge = judge;
         this.sound = sound;
         this.time = new Date().getTime();
-        this.particle = new Array(state == "perfect" ? 6 : state == "good" ? 4 : 0).fill(0).map(() => {return {rad: Math.random() * Math.PI * 2, size: 0.1 + Math.random() * 0.3}});
+        this.particle = new Array(judge == "perfect" ? 6 : judge == "good" ? 3 : 0).fill(0).map(() => {return {rad: Math.random() * Math.PI * 2, size: 0.1 + Math.random() * 0.3}});
+
+        laneStates[lane].latestDispatchedNoteTime = nowTime;
+        laneStates[lane].latestDispatchedNoteJudge = judge;
     }
 }
 
@@ -238,23 +261,43 @@ let drawqwerty =()=> {
     ctx.lineJoin = "round";
     ctx.lineWidth = 3;
     ctx.globalAlpha = 1;
+    
     Object.values(laneStates).forEach(x => {
         ctx.save();
-        ctx.globalAlpha = x.alpha;
+
         ctx.translate(x.xpos, x.ypos);
         ctx.rotate(x.direction);
+
+        ctx.globalAlpha = 0.05 * x.alpha;
+        ctx.fillRect(-120, -diagLeng, 240, diagLeng * 2);
+
+        ctx.globalAlpha = (0.25 * pressed[x.keyNum] + Math.max(1 - (nowTime - pressedTime[x.keyNum]) / 500 || 0, 0) * 0.75) * Math.min(x.alpha, 1) * 0.3;
+        ctx.fillRect(-120, -diagLeng, 240, diagLeng * 2);
+
+        if (nowTime - x.latestDispatchedNoteTime < 1000) {
+            ctx.globalAlpha = Math.max(Math.min(((nowTime - x.latestDispatchedNoteTime) / 1000 - 1) ** 2 * x.alpha * 0.65, 0.65), 0);
+            let gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 500);
+            gradient.addColorStop(0, colorList[x.latestDispatchedNoteJudge] + "ff");
+            gradient.addColorStop(0.3, colorList[x.latestDispatchedNoteJudge] + "88");
+            gradient.addColorStop(1, colorList[x.latestDispatchedNoteJudge] + "00");
+            ctx.fillStyle = gradient;
+            ctx.fillRect(-120, -500, 240, 1000);
+            ctx.fill();
+        }
+
+        ctx.globalCompositeOperation = "lighter";
+
+        ctx.globalAlpha = Math.max(0, Math.min(1, x.alpha));
         ctx.stroke(pathPreset.diamond);
         ctx.stroke(pathPreset[laneKeys[x.keyNum]]);
+
         ctx.beginPath();
         ctx.moveTo(-120, diagLeng);
         ctx.lineTo(-120, -diagLeng);
         ctx.moveTo(120, diagLeng);
         ctx.lineTo(120, -diagLeng);
         ctx.stroke();
-        ctx.globalAlpha = 0.05 * x.alpha;
-        ctx.fillRect(-120, -diagLeng, 240, diagLeng * 2);
-        ctx.globalAlpha = (0.25 * pressed[x.keyNum] + Math.max(1 - (nowTime - pressedTime[x.keyNum]) / 500 || 0, 0) * 0.75) * Math.min(x.alpha, 1) * 0.3;
-        ctx.fillRect(-120, -diagLeng, 240, diagLeng * 2);
+        
         ctx.restore();
     });
 }
@@ -378,10 +421,13 @@ let drawNotes =()=> {
 
     Object.keys(drewId).forEach(x=>{
         ctx.save();
+
         ctx.fillStyle = drewId[x].color;
         ctx.globalAlpha = ((drewId[x].judge == "lost" || drewId[x].judge == "far") ? 0.5 : 1) * laneStates[drewId[x].lane].alpha;
+
         ctx.translate(laneStates[drewId[x].lane].xpos, laneStates[drewId[x].lane].ypos);
         ctx.rotate(laneStates[drewId[x].lane].direction);
+
         ctx.beginPath();
         if (drewId[x].start < drewId[x].end) {
             ctx.moveTo(-75, drewId[x].start + 25);
@@ -399,6 +445,7 @@ let drawNotes =()=> {
             ctx.lineTo(-75, drewId[x].end - 25);
         }
         ctx.closePath();
+
         ctx.fill();
         ctx.restore();
     });
@@ -478,10 +525,12 @@ let judgeNotes =()=> {
 
         judgeQueue.forEach(x=>{
             judgeStatus[x]++;
+
             if (x == "good" || x == "perfect") {
                 judgeStatus.combo++;
                 if (judgeStatus.maxCombo < judgeStatus.combo) judgeStatus.maxCombo = judgeStatus.combo;
-            } else judgeStatus.combo = 0;
+            }
+             else judgeStatus.combo = 0;
         });
 
         judgeQueue = [];
@@ -493,12 +542,14 @@ let judgeNotes =()=> {
 }
 
 let drawEffects =()=> {
+    ctx.globalCompositeOperation = "lighter";
+
     effects.forEach(x=>{
         let size = ((new Date().getTime() - x.time) / 750 - 1) ** 3 + 1;
 
         if (size >= 1 || !laneStates[x.lane]) return;
         
-        switch (x.state) {
+        switch (x.judge) {
             case "far": {
                 ctx.strokeStyle = colorList.far;
                 ctx.fillStyle = colorList.far;
@@ -517,7 +568,7 @@ let drawEffects =()=> {
         ctx.translate(laneStates[x.lane].xpos, laneStates[x.lane].ypos);
         ctx.rotate(laneStates[x.lane].direction);
 
-        switch (x.state) {
+        switch (x.judge) {
             case "far": {
                 ctx.lineWidth = Math.max((1 - size) * 10, 0);
                 ctx.scale(size * 0.5 + 1, size * 0.5 + 1);
@@ -560,9 +611,13 @@ let drawEffects =()=> {
     });
 
     effects = effects.filter(x => new Date().getTime() - x.time < 1000);
+
+    ctx.globalCompositeOperation = "source-over";
 }
 
 let drawInfos =()=> {
+    ctx.globalCompositeOperation = "lighter";
+
     let time = Math.min(nowTime / 1000, (snd[bgm] || []).duration);
 
     infoStyle.ypos += -infoStyle.ypos / 10;
@@ -611,6 +666,8 @@ let drawInfos =()=> {
     }
 
     ctx.restore();
+
+    ctx.globalCompositeOperation = "source-over";
 }
 
 let deleteNotes =()=> {
