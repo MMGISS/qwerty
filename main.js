@@ -710,6 +710,7 @@ let generateScore =(scoreName)=> {
         let arr = x.split(/ +/), reversed = 0, isMultiNote;
 
         if (["1", "2", "3", "4", "a", "d", "x", "y"].indexOf(arr[0]) > -1) {
+
             arr[2] = arr[2].split(",");
             
             if (arr[2][0].charAt(0) == "-") {
@@ -719,19 +720,23 @@ let generateScore =(scoreName)=> {
 
             arr[3] *= 60 / bpm * 1000;
             arr[4] *= 60 / bpm * 1000;
+            
         } else {
             arr[2] *= 60 / bpm * 1000;
         }
 
         if (arr[0] == "1" || arr[0] == "2") {
+
             isMultiNote = arr[1].length != 1;
 
             fullComboAmount += arr[1].length;
             let index = notesTime.findIndex(x => x[0] <= arr[3]);
 
             if ((notesTime[index] || [])[0] == arr[3]) {
+
                 isMultiNote = true;
                 notes[notesTime[index][1]].isMultiNote = true;
+                
             } else notesTime.splice(index, 0, [arr[3], notes.length]);
         }
 
