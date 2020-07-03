@@ -1,5 +1,6 @@
 function main(){
     ctx.clearRect(canvas.width / -2 / ratio, canvas.height / -2 / ratio, canvas.width / ratio, canvas.height / ratio);
+
     nowTime = new Date().getTime() - startedTime;
     
     judgeNotes();
@@ -44,5 +45,17 @@ setTimeout(keyInterval, 102);
 setTimeout(keyInterval, 104);
 setTimeout(keyInterval, 106);
 setTimeout(keyInterval, 108);
+
+resizeClip =()=> {
+    ctx.moveTo(-1600, -900);
+    ctx.lineTo(1600, -900);
+    ctx.lineTo(1600, 900);
+    ctx.lineTo(-1600, 900);
+    ctx.closePath();
+    ctx.clip();
+};
+
+window.addEventListener("resize", () => resizeClip());
+resizeClip()
 
 main();
