@@ -21,15 +21,13 @@ sudden3 M 0,0 37.5,0 M 37.5,0 37.5,15 M 37.5,15 62.5,25 M 62.5,25 100,100
 sudden4 m 0,0 v 42.8 m 0,0 50,10 c 13.843467,1.764719 30.060794,2.394113 48,2.2 l 2,45
 inv M 0,0 99.999999,0 M 99.999999,0 100,100
 inv_holdend M 0,0 50,0 M 50,0 100,100
-
-kkkkicks-slide M 0,0 C 0,100 50,100 100,100
-kkkkicks-1 M 0,25 H 100
-kkkkicks-2 M 0,35 H 100
-kkkkicks-3 M 0,45 H 100
-kkkkicks-4 M 0,55 H 100
-kkkkicks-5 M 0,65 H 100
+k-k-k-k-kicks M 0,0 C 0,45 0,90 20,90 M 20,90 20.5,87.5 M 20.5,87.5 21,92.5 M 21,92.5 21.5,90 M 21.5,90 25,90 M 25,90 25.5,87.5 M 25.5,87.5 26,92.5 M 26,92.5 26.5,90 M 26.5,90 30,90 M 30,90 30.5,87.5 M 30.5,87.5 31,92.5 M 31,92.5 31.5,90 M 31.5,90 35,90 M 35,90 35.5,87.5 M 35.5,87.5 36,92.5 M 36,92.5 36.5,90 M 36.5,90 40,90 M 40,90 40.5,87.5 M 40.5,87.5 41,92.5 M 41,92.5 41.5,90 M 41.5,90 100,100
+k-k-k-k-kicks2 M 0,0 20,0 M 20,0 20,90 M 20,90 20.5,87.5 M 20.5,87.5 21,92.5 M 21,92.5 21.5,90 M 21.5,90 25,90 M 25,90 25.5,87.5 M 25.5,87.5 26,92.5 M 26,92.5 26.5,90 M 26.5,90 30,90 M 30,90 30.5,87.5 M 30.5,87.5 31,92.5 M 31,92.5 31.5,90 M 31.5,90 35,90 M 35,90 35.5,87.5 M 35.5,87.5 36,92.5 M 36,92.5 36.5,90 M 36.5,90 40,90 M 40,90 40.5,87.5 M 40.5,87.5 41,92.5 M 41,92.5 41.5,90 M 41.5,90 100,100
 
 score:
+
+#defineLane abcdefghij 98 0 0 0 0 4
+#defineLane qrstuvwxyz 98 0 0 0 0 5
 
 a 012789 fal -2 2 1 0
 x 0 def -1 0 0 -1600
@@ -339,7 +337,7 @@ d 567 def 30.5 0 0.5 0
 
 1 2457 intro 31 4
 
-d 234 def 31 0 0.5 0
+d 23489 def 31 0 0.5 0
 
 a 0189 def 31 0 0 1
 
@@ -364,153 +362,603 @@ a 09 fal 31.7 0.7 1 0
 1 5 sudden2 33 4
 1 6 sudden3 33.5 4 a
 3 6 def 38 2 a
+1 3 def 38.5 2
+1 4 def 39 2
+1 5 def 39.5 2 a
+3 5 def 42 2 a
+1 6 def 42.5 2
+1 3 def 43 2
+1 4 def 43.5 2 a
+3 4 def 45 2 a
+1 6 def 45.5 2 a
+3 6 def 46.5 2 a
+1 3 def 47 2
+1 4 def 47.5 2
 
 2 2 sudden0 32 4
 2 2 inv 32 1 i
 4 2 inv_holdend 32.5 1 i
+x 09 def 32 0 0 -750
+a 09 def 32 0 0 0.9
+x 0 refal 32.5 0.5 -750 -1150
+x 9 refal 32.5 0.5 -750 -350
+a 09 refal 32.7 0.7 0.9 0
+
 2 1 sudden4 33 2
 2 1 inv 33 1 i
 4 1 inv_holdend 33.5 1 i
+x 09 def 33 0 0 -1100
+a 09 def 33 0 0 0.9
+x 0 refal 33.5 0.5 -1100 -1500
+x 9 refal 33.5 0.5 -1100 -700
+a 09 refal 33.7 0.7 0.9 0
+
 2 2 dash 34 2
 2 2 inv 34 1 i
 4 2 inv_holdend 34.5 1 i
+x 09 def 34 0 0 -750
+a 09 def 34 0 0 0.9
+x 0 refal 34.5 0.5 -750 -1150
+x 9 refal 34.5 0.5 -750 -350
+a 09 refal 34.7 0.7 0.9 0
+
 2 1 dash 35 2
 2 1 inv 35 1 i
 4 1 inv_holdend 35.5 1 i
+x 09 def 35 0 0 -1100
+a 09 def 35 0 0 0.9
+x 0 refal 35.5 0.5 -1100 -1500
+x 9 refal 35.5 0.5 -1100 -700
+a 09 refal 35.7 0.7 0.9 0
+
 2 2 dash 36 2
 2 2 inv 36 1 i
 4 2 inv_holdend 36.5 1 i
+x 09 def 36 0 0 -750
+a 09 def 36 0 0 0.9
+x 0 refal 36.5 0.5 -750 -1150
+x 9 refal 36.5 0.5 -750 -350
+a 09 refal 36.7 0.7 0.9 0
+
 2 1 dash 37 2
 2 1 inv 37 1 i
 4 1 inv_holdend 37.5 1 i
+x 09 def 37 0 0 -1100
+a 09 def 37 0 0 0.9
+x 0 refal 37.5 0.5 -1100 -1500
+x 9 refal 37.5 0.5 -1100 -700
+a 09 refal 37.7 0.7 0.9 0
+
 2 2 dash 38 2
 2 2 inv 38 1 i
 4 2 inv_holdend 38.5 1 i
+x 09 def 38 0 0 -750
+a 09 def 38 0 0 0.9
+x 0 refal 38.5 0.5 -750 -1150
+x 9 refal 38.5 0.5 -750 -350
+a 09 refal 38.7 0.7 0.9 0
+
 2 1 dash 39 2
 2 1 inv 39 1 i
 4 1 inv_holdend 39.5 1 i
+x 09 def 39 0 0 -1100
+a 09 def 39 0 0 0.9
+x 0 refal 39.5 0.5 -1100 -1500
+x 9 refal 39.5 0.5 -1100 -700
+a 09 refal 39.7 0.7 0.9 0
+
 2 2 dash 40 2
 2 2 inv 40 1 i
 4 2 inv_holdend 40.5 1 i
+x 09 def 40 0 0 -750
+a 09 def 40 0 0 0.9
+x 0 refal 40.5 0.5 -750 -1150
+x 9 refal 40.5 0.5 -750 -350
+a 09 refal 40.7 0.7 0.9 0
+
 2 1 dash 41 2
 2 1 inv 41 1 i
 4 1 inv_holdend 41.5 1 i
+x 09 def 41 0 0 -1100
+a 09 def 41 0 0 0.9
+x 0 refal 41.5 0.5 -1100 -1500
+x 9 refal 41.5 0.5 -1100 -700
+a 09 refal 41.7 0.7 0.9 0
+
 2 2 dash 42 2
 2 2 inv 42 1 i
 4 2 inv_holdend 42.5 1 i
+x 09 def 42 0 0 -750
+a 09 def 42 0 0 0.9
+x 0 refal 42.5 0.5 -750 -1150
+x 9 refal 42.5 0.5 -750 -350
+a 09 refal 42.7 0.7 0.9 0
+
 2 1 dash 43 2
 2 1 inv 43 1 i
 4 1 inv_holdend 43.5 1 i
+x 09 def 43 0 0 -1100
+a 09 def 43 0 0 0.9
+x 0 refal 43.5 0.5 -1100 -1500
+x 9 refal 43.5 0.5 -1100 -700
+a 09 refal 43.7 0.7 0.9 0
+
 2 2 dash 44 2
 2 2 inv 44 1 i
 4 2 inv_holdend 44.5 1 i
+x 09 def 44 0 0 -750
+a 09 def 44 0 0 0.9
+x 0 refal 44.5 0.5 -750 -1150
+x 9 refal 44.5 0.5 -750 -350
+a 09 refal 44.7 0.7 0.9 0
+
 2 1 dash 45 2
 2 1 inv 45 1 i
 4 1 inv_holdend 45.5 1 i
+x 09 def 45 0 0 -1100
+a 09 def 45 0 0 0.9
+x 0 refal 45.5 0.5 -1100 -1500
+x 9 refal 45.5 0.5 -1100 -700
+a 09 refal 45.7 0.7 0.9 0
 
+2 2 dash 46 2
+2 2 inv 46 1 i
+4 2 inv_holdend 46.5 1 i
+x 09 def 46 0 0 -750
+a 09 def 46 0 0 0.9
+x 0 refal 46.5 0.5 -750 -1150
+x 9 refal 46.5 0.5 -750 -350
+a 09 refal 46.7 0.7 0.9 0
 
-a 0123456789 kkkkicks-slide 93 1 1 0
-#defineLane abcdefghijklmnopqrst 88 0 800 0 0.3 5
+2 1 dash 47 2
+2 1 inv 47 1 i
+4 1 inv_holdend 47.5 1 i
+x 09 def 47 0 0 -1100
+a 09 def 47 0 0 0.9
+x 0 refal 47.5 0.5 -1100 -1500
+x 9 refal 47.5 0.5 -1100 -700
+a 09 refal 47.7 0.7 0.9 0
 
-x a kkkkicks-slide 92 4 0 -1437.5
-x b kkkkicks-slide 92 4 0 -1312.5
-x c kkkkicks-slide 92 4 0 -1187.5
-x d kkkkicks-slide 92 4 0 -1062.5
+1 6 def 48 2
+1 5 def 48.5 2
+1 4 def 49 2
+1 3 def 49.5 2 a
+3 3 def 54 2 a
+1 6 def 54.5 2
+1 5 def 55 2
+1 4 def 55.5 2 a
+3 4 def 58 2 a
+1 3 def 58.5 2
+1 6 def 59 2
+1 5 def 59.5 2 a
+3 5 def 61 2 a
+1 3 def 61.5 2 a
+3 3 def 62.5 2 a
+1 6 def 63 2
+1 5 def 63.5 2
 
-x e kkkkicks-slide 92 4 0 -812.5
-x f kkkkicks-slide 92 4 0 -687.5
-x g kkkkicks-slide 92 4 0 -562.5
-x h kkkkicks-slide 92 4 0 -437.5
+2 7 dash 48 4
+2 7 inv 48 1 i
+4 7 inv_holdend 48.5 1 i
+x 09 def 48 0 0 750
+a 09 def 48 0 0 0.9
+x 0 refal 48.5 0.5 750 1150
+x 9 refal 48.5 0.5 750 350
+a 09 refal 48.7 0.7 0.9 0
 
-x i kkkkicks-slide 92 4 0 -187.5
-x j kkkkicks-slide 92 4 0 -62.5
-x k kkkkicks-slide 92 4 0 62.5
-x l kkkkicks-slide 92 4 0 187.5
+2 8 dash 49 2
+2 8 inv 49 1 i
+4 8 inv_holdend 49.5 1 i
+x 09 def 49 0 0 1100
+a 09 def 49 0 0 0.9
+x 0 refal 49.5 0.5 1100 1500
+x 9 refal 49.5 0.5 1100 700
+a 09 refal 49.7 0.7 0.9 0
 
-x m kkkkicks-slide 92 4 0 437.5
-x n kkkkicks-slide 92 4 0 562.5
-x o kkkkicks-slide 92 4 0 687.5
-x p kkkkicks-slide 92 4 0 812.5
+2 7 dash 50 2
+2 7 inv 50 1 i
+4 7 inv_holdend 50.5 1 i
+x 09 def 50 0 0 750
+a 09 def 50 0 0 0.9
+x 0 refal 50.5 0.5 750 1150
+x 9 refal 50.5 0.5 750 350
+a 09 refal 50.7 0.7 0.9 0
 
-x q kkkkicks-slide 92 4 0 1062.5
-x r kkkkicks-slide 92 4 0 1187.5
-x s kkkkicks-slide 92 4 0 1312.5
-x t kkkkicks-slide 92 4 0 1437.5
+2 8 dash 51 2
+2 8 inv 51 1 i
+4 8 inv_holdend 51.5 1 i
+x 09 def 51 0 0 1100
+a 09 def 51 0 0 0.9
+x 0 refal 51.5 0.5 1100 1500
+x 9 refal 51.5 0.5 1100 700
+a 09 refal 51.7 0.7 0.9 0
 
-// a  d  f    jkl m  p  rs
-// a c   f   i    m o  q
-// ab    f   i    mn    rs
-// a c   f   i    m o     t
-// a  d  f    jkl m  p  rs
-// 
-// abc   fg  i  l  nop qrst
-// a  d e  h ij l m    q
-// a  d efgh i kl m    qrs
-// a  d e  h i  l m    q
-// abc  e  h i  l  nop qrst
-// 
-// abcd e     jk   no  qrs
-// a    e    i  l m  p q  t
-// abc  e    i  l m  p qrs
-// a    e    i  l m  p q  t
-// a    efgh  jk   no  q  t
-// 
-// abcd efgh ijkl mnop qrst
+2 7 dash 52 2
+2 7 inv 52 1 i
+4 7 inv_holdend 52.5 1 i
+x 09 def 52 0 0 750
+a 09 def 52 0 0 0.9
+x 0 refal 52.5 0.5 750 1150
+x 9 refal 52.5 0.5 750 350
+a 09 refal 52.7 0.7 0.9 0
 
-2 ad kkkkicks-1 94 2
-2 ac kkkkicks-2 94 2
-2 ab kkkkicks-3 94 2
-2 ac kkkkicks-4 94 2
-2 ad kkkkicks-5 94 2
-y abcd kkkkicks-slide 93 1 600 800
-a abcd kkkkicks-slide 93 1 3 0.5
+2 8 dash 53 2
+2 8 inv 53 1 i
+4 8 inv_holdend 53.5 1 i
+x 09 def 53 0 0 1100
+a 09 def 53 0 0 0.9
+x 0 refal 53.5 0.5 1100 1500
+x 9 refal 53.5 0.5 1100 700
+a 09 refal 53.7 0.7 0.9 0
 
-2 f kkkkicks-1 94 1.75
-2 f kkkkicks-2 94 1.75
-2 f kkkkicks-3 94 1.75
-2 f kkkkicks-4 94 1.75
-2 f kkkkicks-5 94 1.75
-y efgh kkkkicks-slide 93.25 1 600 800
-a efgh kkkkicks-slide 93.25 1 3 0.5
+2 7 dash 54 2
+2 7 inv 54 1 i
+4 7 inv_holdend 54.5 1 i
+x 09 def 54 0 0 750
+a 09 def 54 0 0 0.9
+x 0 refal 54.5 0.5 750 1150
+x 9 refal 54.5 0.5 750 350
+a 09 refal 54.7 0.7 0.9 0
 
-2 jkl kkkkicks-1 94 1.5
-2 i kkkkicks-2 94 1.5
-2 i kkkkicks-3 94 1.5
-2 i kkkkicks-4 94 1.5
-2 jkl kkkkicks-5 94 1.5
-y ijkl kkkkicks-slide 93.5 1 600 800
-a ijkl kkkkicks-slide 93.5 1 3 0.5
+2 8 dash 55 2
+2 8 inv 55 1 i
+4 8 inv_holdend 55.5 1 i
+x 09 def 55 0 0 1100
+a 09 def 55 0 0 0.9
+x 0 refal 55.5 0.5 1100 1500
+x 9 refal 55.5 0.5 1100 700
+a 09 refal 55.7 0.7 0.9 0
 
-2 mp kkkkicks-1 94 1.25
-2 mo kkkkicks-2 94 1.25
-2 mn kkkkicks-3 94 1.25
-2 mo kkkkicks-4 94 1.25
-2 mp kkkkicks-5 94 1.25
-y mnop kkkkicks-slide 93.75 1 600 800
-a mnop kkkkicks-slide 93.75 1 3 0.5
+2 7 dash 56 2
+2 7 inv 56 1 i
+4 7 inv_holdend 56.5 1 i
+x 09 def 56 0 0 750
+a 09 def 56 0 0 0.9
+x 0 refal 56.5 0.5 750 1150
+x 9 refal 56.5 0.5 750 350
+a 09 refal 56.7 0.7 0.9 0
 
-2 rs kkkkicks-1 94 1
-2 q kkkkicks-2 94 1
-2 rs kkkkicks-3 94 1
-2 t kkkkicks-4 94 1
-2 rs kkkkicks-5 94 1
-y qrst kkkkicks-slide 94 1 600 800
-a qrst kkkkicks-slide 94 1 3 0.5
+2 8 dash 57 2
+2 8 inv 57 1 i
+4 8 inv_holdend 57.5 1 i
+x 09 def 57 0 0 1100
+a 09 def 57 0 0 0.9
+x 0 refal 57.5 0.5 1100 1500
+x 9 refal 57.5 0.5 1100 700
+a 09 refal 57.7 0.7 0.9 0
 
-2 abcfgilnopqrst kkkkicks-1 95 1
-2 adehijlmq kkkkicks-2 95 1
-2 adefghiklmqrs kkkkicks-3 95 1
-2 adehilmq kkkkicks-4 95 1
-2 abcehilnopqrst kkkkicks-5 95 1
-y abcdefghijklmnopqrst kkkkicks-slide 95 1 600 800
-a abcdefghijklmnopqrst kkkkicks-slide 95 1 3 0.5
+2 7 dash 58 2
+2 7 inv 58 1 i
+4 7 inv_holdend 58.5 1 i
+x 09 def 58 0 0 750
+a 09 def 58 0 0 0.9
+x 0 refal 58.5 0.5 750 1150
+x 9 refal 58.5 0.5 750 350
+a 09 refal 58.7 0.7 0.9 0
 
-2 abcdejknoqrs  kkkkicks-1 96 1
-2 aeilmpqt kkkkicks-2 96 1
-2 abceilmpqrs  kkkkicks-3 96 1
-2 aeilmpqt kkkkicks-4 96 1
-2 aefghjknoqt kkkkicks-5 96 1
-y abcdefghijklmnopqrst kkkkicks-slide 96 1 600 800
-a abcdefghijklmnopqrst kkkkicks-slide 96 1 3 0.5
+2 8 dash 59 2
+2 8 inv 59 1 i
+4 8 inv_holdend 59.5 1 i
+x 09 def 59 0 0 1100
+a 09 def 59 0 0 0.9
+x 0 refal 59.5 0.5 1100 1500
+x 9 refal 59.5 0.5 1100 700
+a 09 refal 59.7 0.7 0.9 0
 
+2 7 dash 60 2
+2 7 inv 60 1 i
+4 7 inv_holdend 60.5 1 i
+x 09 def 60 0 0 750
+a 09 def 60 0 0 0.9
+x 0 refal 60.5 0.5 750 1150
+x 9 refal 60.5 0.5 750 350
+a 09 refal 60.7 0.7 0.9 0
+
+2 8 dash 61 2
+2 8 inv 61 1 i
+4 8 inv_holdend 61.5 1 i
+x 09 def 61 0 0 1100
+a 09 def 61 0 0 0.9
+x 0 refal 61.5 0.5 1100 1500
+x 9 refal 61.5 0.5 1100 700
+a 09 refal 61.7 0.7 0.9 0
+
+2 7 dash 62 2
+2 7 inv 62 1 i
+4 7 inv_holdend 62.5 1 i
+x 09 def 62 0 0 750
+a 09 def 62 0 0 0.9
+x 0 refal 62.5 0.5 750 1150
+x 9 refal 62.5 0.5 750 350
+a 09 refal 62.7 0.7 0.9 0
+
+2 8 dash 63 2
+2 8 inv 63 1 i
+4 8 inv_holdend 63.5 1 i
+x 09 def 63 0 0 1100
+a 09 def 63 0 0 0.9
+x 0 refal 63.5 0.5 1100 1500
+x 9 refal 63.5 0.5 1100 700
+a 09 refal 63.7 0.7 0.9 0
+
+1 3 def 64 2
+1 3 def 65 2
+1 3 def 66 2
+1 3 def 67 2
+1 3 def 68 2
+1 3 def 69 2
+1 3 def 70 2
+1 3 def 71 2
+1 6 def 72 2
+1 6 def 73 2
+1 6 def 74 2
+1 6 def 75 2
+1 6 def 76 2
+1 6 def 77 2
+1 6 def 78 2
+1 6 def 79 2
+
+2 6 def 64 1.8 a
+4 6 def 64.5 1.8 a
+2 5 def 64.5 1.8 b
+4 5 def 65 1.8 b
+2 4 def 65 1.8 c
+4 4 def 65.5 1.8 c
+2 5 def 65.5 1.8 d
+4 5 def 70.5 1.8 d
+2 4 def 70.5 1.8 e
+4 4 def 71 1.8 e
+2 6 def 71 1.8 a
+4 6 def 71.5 1.8 a
+2 4 def 71.5 1.8 b
+4 4 def 74.5 1.8 b
+2 3 def 74.5 1.8 c
+4 3 def 75 1.8 c
+2 5 def 75 1.8 d
+4 5 def 75.5 1.8 d
+2 3 def 75.5 1.8 e
+4 3 def 77.5 1.8 e
+2 4 def 77.5 1.8 a
+4 4 def 79 1.8 a
+2 5 def 79 1.8 b
+4 5 def 79.5 1.8 b
+2 3 def 79.5 1.8
+
+a 45 refal 64.15 0.15 1 0.6
+a 45 fal 64.3 0.15 0.6 1
+a 27 refal 64.25 0.15 1 0.65
+a 27 fal 64.4 0.15 0.65 1
+a 18 refal 64.35 0.15 1 0.7
+a 18 fal 64.5 0.15 0.7 1
+
+a 45 refal 65.15 0.15 1 0.6
+a 45 fal 65.3 0.15 0.6 1
+a 27 refal 65.25 0.15 1 0.65
+a 27 fal 65.4 0.15 0.65 1
+a 18 refal 65.35 0.15 1 0.7
+a 18 fal 65.5 0.15 0.7 1
+
+a 45 refal 66.15 0.15 1 0.6
+a 45 fal 66.3 0.15 0.6 1
+a 27 refal 66.25 0.15 1 0.65
+a 27 fal 66.4 0.15 0.65 1
+a 18 refal 66.35 0.15 1 0.7
+a 18 fal 66.5 0.15 0.7 1
+
+a 45 refal 67.15 0.15 1 0.6
+a 45 fal 67.3 0.15 0.6 1
+a 27 refal 67.25 0.15 1 0.65
+a 27 fal 67.4 0.15 0.65 1
+a 18 refal 67.35 0.15 1 0.7
+a 18 fal 67.5 0.15 0.7 1
+
+a 45 refal 68.15 0.15 1 0.6
+a 45 fal 68.3 0.15 0.6 1
+a 27 refal 68.25 0.15 1 0.65
+a 27 fal 68.4 0.15 0.65 1
+a 18 refal 68.35 0.15 1 0.7
+a 18 fal 68.5 0.15 0.7 1
+
+a 45 refal 69.15 0.15 1 0.6
+a 45 fal 69.3 0.15 0.6 1
+a 27 refal 69.25 0.15 1 0.65
+a 27 fal 69.4 0.15 0.65 1
+a 18 refal 69.35 0.15 1 0.7
+a 18 fal 69.5 0.15 0.7 1
+
+a 45 refal 70.15 0.15 1 0.6
+a 45 fal 70.3 0.15 0.6 1
+a 27 refal 70.25 0.15 1 0.65
+a 27 fal 70.4 0.15 0.65 1
+a 18 refal 70.35 0.15 1 0.7
+a 18 fal 70.5 0.15 0.7 1
+
+a 45 refal 71.15 0.15 1 0.6
+a 45 fal 71.3 0.15 0.6 1
+a 27 refal 71.25 0.15 1 0.65
+a 27 fal 71.4 0.15 0.65 1
+a 18 refal 71.35 0.15 1 0.7
+a 18 fal 71.5 0.15 0.7 1
+
+a 45 refal 72.15 0.15 1 0.6
+a 45 fal 72.3 0.15 0.6 1
+a 27 refal 72.25 0.15 1 0.65
+a 27 fal 72.4 0.15 0.65 1
+a 18 refal 72.35 0.15 1 0.7
+a 18 fal 72.5 0.15 0.7 1
+
+a 45 refal 73.15 0.15 1 0.6
+a 45 fal 73.3 0.15 0.6 1
+a 27 refal 73.25 0.15 1 0.65
+a 27 fal 73.4 0.15 0.65 1
+a 18 refal 73.35 0.15 1 0.7
+a 18 fal 73.5 0.15 0.7 1
+
+a 45 refal 74.15 0.15 1 0.6
+a 45 fal 74.3 0.15 0.6 1
+a 27 refal 74.25 0.15 1 0.65
+a 27 fal 74.4 0.15 0.65 1
+a 18 refal 74.35 0.15 1 0.7
+a 18 fal 74.5 0.15 0.7 1
+
+a 45 refal 75.15 0.15 1 0.6
+a 45 fal 75.3 0.15 0.6 1
+a 27 refal 75.25 0.15 1 0.65
+a 27 fal 75.4 0.15 0.65 1
+a 18 refal 75.35 0.15 1 0.7
+a 18 fal 75.5 0.15 0.7 1
+
+a 45 refal 76.15 0.15 1 0.6
+a 45 fal 76.3 0.15 0.6 1
+a 27 refal 76.25 0.15 1 0.65
+a 27 fal 76.4 0.15 0.65 1
+a 18 refal 76.35 0.15 1 0.7
+a 18 fal 76.5 0.15 0.7 1
+
+a 45 refal 77.15 0.15 1 0.6
+a 45 fal 77.3 0.15 0.6 1
+a 27 refal 77.25 0.15 1 0.65
+a 27 fal 77.4 0.15 0.65 1
+a 18 refal 77.35 0.15 1 0.7
+a 18 fal 77.5 0.15 0.7 1
+
+a 45 refal 78.15 0.15 1 0.6
+a 45 fal 78.3 0.15 0.6 1
+a 27 refal 78.25 0.15 1 0.65
+a 27 fal 78.4 0.15 0.65 1
+a 18 refal 78.35 0.15 1 0.7
+a 18 fal 78.5 0.15 0.7 1
+
+a 45 refal 79.15 0.15 1 0.6
+a 45 fal 79.3 0.15 0.6 1
+a 27 refal 79.25 0.15 1 0.65
+a 27 fal 79.4 0.15 0.65 1
+a 18 refal 79.35 0.15 1 0.7
+a 18 fal 79.5 0.15 0.7 1
+
+x 3 fal 80 16 -425 -375
+x 6 fal 80 16 425 375
+x 2 fal 80 16 -750 -625
+x 7 fal 80 16 750 625
+x 1 fal 80 16 -1100 -875
+x 8 fal 80 16 1100 875
+
+y 12345678 def 80 16 600 -600
+
+x 0 def 76 0 0 -1800
+x 9 def 76 0 0 1800
+y 0 def 76 0 0 -600
+y 9 def 76 0 0 600
+d 0 def 76 0 0 -0.25
+d 9 def 76 0 0 0.25
+a 09 def 80 4 0 0.5
+
+d 12345678 def 80 0 0 0.5
+d 12345678 def 82 0 0.5 0
+d 12345678 def 84 0 0 0.5
+d 12345678 def 86 0 0.5 0
+d 123678 def 88 0 0 0.5
+d 123678 def 89 0 0.5 0
+d 123678 def 90 0 0 0.5
+d 123678 def 91 0 0.5 0
+
+y 12345678 def 82 2 -600 600
+y 12345678 def 84 2 600 -600
+y 12345678 def 86 2 -600 600
+y 12345678 def 88 2 600 -600
+y 123678 def 89 1 -600 600
+y 123678 def 90 1 600 -600
+y 123678 def 91 1 -600 600
+y 123678 def 92 1 600 -600
+
+a 0 def 80.2 0.2 0.3 1
+a 0 fal 80.7 0.3 1 0.3
+a 9 def 82.2 0.2 0.3 1
+a 9 fal 82.7 0.3 1 0.3
+a 0 def 84.2 0.2 0.3 1
+a 0 fal 84.7 0.3 1 0.3
+a 9 def 86.2 0.2 0.3 1
+a 9 fal 86.7 0.3 1 0.3
+a 0 def 88.2 0.2 0.3 1
+a 0 fal 88.7 0.3 1 0.3
+a 9 def 89.2 0.2 0.3 1
+a 9 fal 89.7 0.3 1 0.3
+a 0 def 90.2 0.2 0.3 1
+a 0 fal 90.7 0.3 1 0.3
+a 9 def 91.2 0.2 0.3 1
+a 9 fal 91.7 0.3 1 0.3
+
+x 4 def 92 4 -125 125
+x 5 def 92 4 125 -125
+y 45 def 92 4 -600 0
+
+1 2 def 80 2.666
+1 4 def 80.5 2.666
+1 5 def 81 2.666
+1 6 def 81.5 2.666
+1 3 def 82 2.666
+1 5 def 82.5 2.666
+1 6 def 83 2.666
+1 7 def 83.5 2.666
+1 2 def 84 2.666
+1 3 def 84.5 2.666
+1 4 def 85 2.666
+1 6 def 85.5 2.666
+1 3 def 86 2.666
+1 4 def 86.5 2.666
+1 5 def 87 2.666
+1 7 def 87.5 2.666
+2 2 def 88 1.333
+2 3 def 88.333 1.333
+2 6 def 88.5 1.333
+2 7 def 88.866 1.333
+2 1 def 89 1.333
+2 3 def 89.333 1.333
+2 6 def 89.5 1.333
+2 8 def 89.866 1.333
+2 2 def 90 1.333
+2 6 def 90.333 1.333
+2 3 def 90.5 1.333
+2 7 def 90.866 1.333
+2 1 def 91 1.333
+2 6 def 91.333 1.333
+2 3 def 91.5 1.333
+2 8 def 91.866 1.333
+
+a 01236789 def 92 0 1 0
+y 01236789 def 92 0 0 0
+x 123 def 92 0 0 -125
+x 678 def 92 0 0 125
+
+x 123 refal 92.05 0.05 -125 -425
+a 3 refal 92.025 0.025 0 1
+x 678 refal 92.3 0.05 125 425
+a 6 refal 92.275 0.025 0 1
+x 12 refal 92.55 0.05 -425 -725
+a 2 refal 92.525 0.025 0 1
+x 78 refal 92.8 0.05 425 725
+a 7 refal 92.775 0.025 0 1
+x 1 refal 93.05 0.05 -725 -1025
+x 8 refal 93.05 0.05 725 1025
+a 18 refal 93.025 0.025 0 1
+
+2 45 k-k-k-k-kicks 96 5
+2 123678 k-k-k-k-kicks2 96 5
+
+d 09 def 93 0 0 0
+a 09 def 93 0 0 1
+y 09 def 93 0 0 0
+x 0 def 93 0 0 -125
+x 9 def 93 0 0 125
+x 0 refal 93.2 0.2 -125 -2000
+x 9 refal 93.2 0.2 125 2000
+x 3 refal 93.3 0.3 -425 -1850
+x 6 refal 93.3 0.3 425 1850
+x 2 refal 93.4 0.4 -725 -1700
+x 7 refal 93.4 0.4 725 1700
+x 1 refal 93.5 0.5 -1025 -1600
+x 8 refal 93.5 0.5 1025 1600
+a 01236789 def 93.5 0.5 1 0
+
+y 45 def 93.2 0.2 0 -800
 `
