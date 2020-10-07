@@ -88,7 +88,7 @@ const themes = {
         tapNoteFill: "#88eeff66",
         slideNote: "#ffff88",
         slideNoteFill:"#ffff8866",
-        perfect: "#ffff88",
+        perfect: "#ffffa0",
         good: "#88eeff",
         far: "#ff8888"
     },
@@ -112,7 +112,6 @@ document.body.style.backgroundColor = colorList.backGround;
 const diagLeng = (3200 ** 2 + 1800 ** 2) ** 0.5;
 
 let note = class {
-    
     constructor(type, lane, path, endTime, speed, id, reversed, isMultiNote){
         this.type = type;
         this.lane = lane;
@@ -190,7 +189,7 @@ let effect = class {
         this.judge = judge;
         this.sound = sound;
         this.time = new Date().getTime();
-        this.particle = new Array(judge == "perfect" ? 6 : judge == "good" ? 3 : 0).fill(0).map(() => {return {rad: Math.random() * Math.PI * 2, size: 0.1 + Math.random() * 0.3}});
+        this.particle = new Array(judge == "perfect" ? 5 : judge == "good" ? 3 : 0).fill(0).map(() => {return {rad: Math.random() * Math.PI * 2, size: 0.1 + Math.random() * 0.3}});
 
         laneStates[lane].latestDispatchedNoteTime = nowTime;
         laneStates[lane].latestDispatchedNoteJudge = judge;
@@ -647,7 +646,7 @@ let drawEffects =()=> {
         x.particle.forEach(i=>{
 
             ctx.save();
-            ctx.translate(laneStates[x.lane].xpos, laneStates[x.lane].ypos);
+            ctx.translate(laneStates[x.lane].xpos, laneStates[x.lane].ypos + ((new Date().getTime() - x.time) / 750) ** 2 * 300);
             ctx.rotate(i.rad);
             ctx.translate(0, 100);
             ctx.scale(i.size, i.size);
